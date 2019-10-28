@@ -1,0 +1,107 @@
+<main>
+
+    <div class="container mt-4">
+
+        <!--Formulario para crear nota-->
+        <div class="accordion" id="accordionCrearNota">
+            <div class="card">
+                <div class="card-header p-0" id="headingOne">
+
+                    <button class="btn btn-info btn-block py-2" type="button" id="btnCrearNota" data-toggle="collapse"
+                        data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"
+                        (click)="desplegar()">
+
+                        Crea una nueva nota
+
+                    </button>
+
+                </div>
+
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionCrearNota">
+                    <div class="card-body px-md-5">
+
+                        <form>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="inputTitulo" placeholder="Titulo de la nota"
+                                    [(ngModel)]="notas.titulo" name="tituloNota">
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlSelectCategoria">Categoria</label>
+                                <select class="form-control" id="formControlSelectCategoria"
+                                    [(ngModel)]="notas.categoria" name="categoriaNota">
+                                    <option>Personal</option>
+                                    <option>Universidad</option>
+                                    <option>Trabajo</option>
+                                    <option>Emprendimiento</option>
+                                    <option>Otros</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <textarea class="form-control" id="formControlTextarea" rows="3"
+                                    placeholder="Cuerpo de la nota" [(ngModel)]="notas.cuerpo"
+                                    name="cuerpoNota"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <button type="button" class="btn btn-info" (click)="guardarNota()">Guardar nota</button>
+                            </div>
+
+                            <div class="form-group" *ngIf="notaCreada">
+                                <div class="alert alert-success text-center" role="alert">
+                                    Nota creada
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Lista de notas-->
+        <div class="mt-5 mb-3 lista-notas">
+            <div class="list-group">
+
+                <div *ngFor="let nota of listaNotas">
+
+                    <a href="/home#" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between" (click)="seleccionarNota(nota)">
+                            <h5 class="mb-1">{{nota.titulo}}</h5>
+                            <small>{{nota.id | date}}</small>
+                        </div>
+                        <p class="mb-1" (click)="seleccionarNota(nota)">
+                            {{nota.cuerpo}}
+                        </p>
+                        <small>{{nota.categoria}}</small>
+                        <a class="btn btn-danger btn-sm float-right" href="#E{{nota.id}}" data-toggle="modal">
+                            Eliminar
+                        </a>
+                    </a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="E{{nota.id}}" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-body">
+                                    ¿Seguro deseas eliminar esta nota?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-danger" (click)="eliminarNota(nota)"
+                                        data-dismiss="modal">Eliminar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</main>

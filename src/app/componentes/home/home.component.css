@@ -1,0 +1,9 @@
+.accordion, div.lista-notas{
+    max-width: 900px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.accordion .card{
+    border-bottom: 1px solid rgba(0,0,0,.125) !important;
+}

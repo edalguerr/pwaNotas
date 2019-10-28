@@ -1,0 +1,38 @@
+<header>
+  <!-- Image and text -->
+  <nav class="navbar navbar-dark bg-primary">
+    <a class="navbar-brand text-white">
+      <img src="../assets/images/icons/icon-72x72.png" width="30" height="30" class="d-inline-block align-top" alt="">
+      pwaNotas
+    </a>
+
+    <button type="button" class="btn btn-dark" (click)="logout()" *ngIf="sesionActiva">Cerrar sesion</button>
+
+  </nav>
+</header>
+
+<div class="inicio-sesion container mt-4" *ngIf="!sesionActiva">
+  <div class="card text-center">
+    
+    <div class="card-body">
+      <h5 class="card-title">Bienvenido</h5>
+      <p class="card-text">
+        Crea notas rapidas, anota tus tareas a realizar durante el dia y accede a ellas desde
+        cualquier dispositivo
+      </p>
+      <button type="button" class="btn btn-outline-primary" (click)="login()">Inicia sesion</button>
+    </div>
+
+    <div class="card-footer text-muted">
+      <a href="https://github.com/edalguerr" target="_blank">Ver proyecto</a>
+    </div>
+
+  </div>
+</div>
+
+<nav class="navbar sticky-bottom navbar-light bg-light" *ngIf="sesionActiva">
+  <a href="https://github.com/edalguerr/pwaNotas" target="_blank">Ver proyecto</a>
+  <small href="#">Icon made by srip from www.flaticon.com</small>
+</nav>
+
+<router-outlet></router-outlet>
